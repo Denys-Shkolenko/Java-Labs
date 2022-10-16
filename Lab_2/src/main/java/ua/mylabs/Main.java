@@ -9,21 +9,27 @@ public class Main {
         }
         @Override
         public void run() {
-//            Object object1 = ThreadSafeSingleton.getInstanceUsingDoubleLocking();
-//            Object object2 = LazyInitializedSingleton.getInstance();
+//            try {
+//            ThreadSafeSingleton obj1 = ThreadSafeSingleton.getInstanceUsingDoubleLocking();
+//                LazyInitializedSingleton obj2 = LazyInitializedSingleton.getInstance();
+//            } catch (InterruptedException e) {
+//                System.out.println("Exception: " + e);
+//            }
             s.getNext();
         }
     }
 
     public static void main(String[] args) {
+
         Sequence s = new Sequence();
         MyThread[] t = new MyThread[10];
+
         for (int i = 0; i < t.length; i++) {
             t[i] = new MyThread(s);
         }
 
-        for (int i = 0; i < t.length; i++) {
-            t[i].start();
+        for (MyThread myThread : t) {
+            myThread.start();
         }
     }
 }

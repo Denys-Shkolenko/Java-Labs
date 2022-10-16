@@ -6,8 +6,9 @@ public class LazyInitializedSingleton {
 
     private LazyInitializedSingleton() {}
 
-    public static LazyInitializedSingleton getInstance(){
+    public static LazyInitializedSingleton getInstance() throws InterruptedException {
         if (instance == null) {
+            Thread.sleep(5);
             instance = new LazyInitializedSingleton();
             System.out.println(Thread.currentThread().getName());
         }
