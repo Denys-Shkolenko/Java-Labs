@@ -1,6 +1,5 @@
 package ua.mylabs;
 
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Sequence {

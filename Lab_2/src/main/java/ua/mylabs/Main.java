@@ -10,7 +10,7 @@ public class Main {
         @Override
         public void run() {
 //            try {
-//            ThreadSafeSingleton obj1 = ThreadSafeSingleton.getInstanceUsingDoubleLocking();
+//                ThreadSafeSingleton obj1 = ThreadSafeSingleton.getInstanceUsingDoubleLocking();
 //                LazyInitializedSingleton obj2 = LazyInitializedSingleton.getInstance();
 //            } catch (InterruptedException e) {
 //                System.out.println("Exception: " + e);
