@@ -9,12 +9,13 @@ public class Sequence {
     ReentrantLock lock = new ReentrantLock();
 
     public void getNext() {
-        lock.lock();
-        try {
-            System.out.println(counter++ + " in " + Thread.currentThread().getName());
-        } finally {
-            lock.unlock();
-        }
-    }
+//        lock.lock();
+//        try {
+//            System.out.println(counter++ + " in " + Thread.currentThread().getName());
+//        } finally {
+//            lock.unlock();
+//        }
+        System.out.println(counter++ + " in " + Thread.currentThread().getName());
+//    }
 
 }
