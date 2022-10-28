@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.Scanner;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,6 +12,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class JsonReader {
+
+    public static final String url = "https://api.mova.institute/udpipe/process?tokenizer&tagger&parser&model=uk&data=";
 
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
@@ -29,11 +32,9 @@ public class JsonReader {
         }
     }
 
-    public static void main(String[] args) throws IOException, JSONException {
-        String url = "https://api.mova.institute/udpipe/process?tokenizer&tagger&parser&model=uk&data=";
-        String inputText = "веселився";
-        JSONObject jsonObject = readJsonFromUrl(url + inputText);
-
+    public static String getPosTagging(String inputString) throws IOException {
+        inputString = inputString.replace(" ", "%20");
+        JSONObject jsonObject = readJsonFromUrl(url + inputString);
         String output = jsonObject.getString("result");
 
         try {
@@ -48,6 +49,21 @@ public class JsonReader {
             e.printStackTrace();
         }
 
-        System.out.println(output);
+        return output;
+    }
+
+    public static void main(String[] args) throws IOException, JSONException {
+        Scanner input = new Scanner(System.in);
+
+        while (true) {
+            System.out.print("Текст ('вихід' - для завершення): ");
+            String inputLine = input.nextLine();
+
+            if ("вихід".equalsIgnoreCase(inputLine)) {
+                break;
+            }
+
+            System.out.println(getPosTagging(inputLine));
+        }
     }
 }
